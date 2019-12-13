@@ -53,9 +53,46 @@ class Rational
 	private int firstDen;	   // entered denominator
 	private int reducedNum;		// reduced numerator
 	private int reducedDen;		// reduced denominator
-   private int gcf;           // greatest common factor
+  private int gcf;           // greatest common factor
+//added!
+	public Rational(int firstNum, int firstDen){
+	this.firstNum = firstNum;
+	this.firstDen= firstDen;
+}
+	public Rational(){
+		firstNum = 1;
+		firstDen = 1;
+	}
+	public String getOriginal(){
+		String original = "" + firstNum + "/" + firstDen;
+		return original;
+	}
 
-	
+	// Defining a method -> expectations are defined
+	public int multiply(Rational n1, Rational n2){
+		firstNum = n1.firstNum * n2.firstNum;
+		firstDen = n1.firstDen * n2.firstDen;
+		reduce();
+		return firstNum / firstDen;
+	}
+	public int divide(Rational n1, Rational n2){
+		firstNum = n1.firstNum* n2.firstDen;
+		firstDen = n1.firstDen * n2.firstNum;
+		reduce();
+		return firstNum / firstDen;
+	}
+
+	public void reduce(){
+		getGCF(firstNum, firstDen);
+		reducedNum = firstNum / gcf;
+		reducedDen = firstDen / gcf;
+	}
+	public String getReduced(){
+		reduce();
+		String reducedFraction = "" + reducedNum + "/" + reducedDen;
+		return reducedFraction;
+	}
+
 	private void getGCF(int n1,int n2)
 	{
 		int rem = 0;
@@ -75,5 +112,3 @@ class Rational
 
 
 }
-
-
