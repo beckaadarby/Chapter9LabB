@@ -23,12 +23,11 @@ public class Lab09bvst
 		System.out.println("\n\n" + r1.getOriginal() + " * " + r2.getOriginal() + "  =  " + r3.getReduced());
 		r3.divide(r1,r2);
 		System.out.println("\n" + r1.getOriginal() + " / " + r2.getOriginal() + "  =  " + r3.getReduced());
-
 //		100 Point Version Only
-//		r3.add(r1,r2);
-//		System.out.println("\n" + r1.getOriginal() + " + " + r2.getOriginal() + "  =  " + r3.getReduced());
-//		r3.subtract(r1,r2);
-//		System.out.println("\n" + r1.getOriginal() + " - " + r2.getOriginal() + "  =  " + r3.getReduced());
+		r3.add(r1,r2);
+		System.out.println("\n" + r1.getOriginal() + " + " + r2.getOriginal() + "  =  " + r3.getReduced());
+		r3.subtract(r1,r2);
+		System.out.println("\n" + r1.getOriginal() + " - " + r2.getOriginal() + "  =  " + r3.getReduced());
 		System.out.println();
 	}
 
@@ -78,6 +77,18 @@ class Rational
 	public int divide(Rational n1, Rational n2){
 		firstNum = n1.firstNum* n2.firstDen;
 		firstDen = n1.firstDen * n2.firstNum;
+		reduce();
+		return firstNum / firstDen;
+	}
+	public int add(Rational n1, Rational n2){
+		firstNum = (n1.firstNum * n2.firstDen) + (n2.firstNum * n1.firstDen);
+		firstDen = (n1.firstDen * n2.firstDen);
+		reduce();
+		return firstNum / firstDen;
+	}
+	public int subtract(Rational n1, Rational n2){
+		firstNum = (n1.firstNum * n2.firstDen) - (n2.firstNum * n1.firstDen);
+		firstDen = (n1.firstDen * n2.firstDen);
 		reduce();
 		return firstNum / firstDen;
 	}
